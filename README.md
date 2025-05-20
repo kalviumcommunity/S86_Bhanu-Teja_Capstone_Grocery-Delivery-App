@@ -10,7 +10,7 @@ The **Grocery Delivery App** is a full-stack web application that allows users t
 
 - User registration and login (authentication)
 - Browse and search grocery items
-- Add items to cart
+- Add items to cart..
 - Select a delivery date and time slot
 - Place and view orders
 - Admin dashboard for managing products (CRUD operations)
