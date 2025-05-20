@@ -1,0 +1,16 @@
+{
+  "name": "s86_bhanu-teja_capstone_grocery-delivery-app",
+  "version": "1.0.0",
+  "description": "The **Grocery Delivery App** is a full-stack web application that allows users to browse grocery items, add them to a cart, and schedule delivery slots. An admin dashboard will enable administrators to manage inventory and update pricing. This project is designed to demonstrate both frontend and backend development skills including authentication, database design, and deployment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
