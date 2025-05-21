@@ -17,4 +17,19 @@ router.get('/:categoryId', (req, res) => {
   res.json(filteredItems);
 });
 
+router.post('/add', (req, res) => {
+  const { name, price, categoryId } = req.body;
+  if (!name || !price || !categoryId) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+  const newItem = {
+    id: items.length + 1,
+    name,
+    price,
+    categoryId
+  };
+  items.push(newItem);
+  res.status(201).json({ message: "Item added", data: newItem });
+});
+
 module.exports = router;
