@@ -37,5 +37,4 @@ router.put('/:id', (req, res) => {
 
   res.json({ message: "Profile updated", data: profile });
 });
-
 module.exports = router;

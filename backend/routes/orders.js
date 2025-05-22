@@ -34,5 +34,4 @@ router.put('/:id', (req, res) => {
   order.status = status;
   res.json({ message: "Order status updated", data: order });
 });
-
 module.exports = router;

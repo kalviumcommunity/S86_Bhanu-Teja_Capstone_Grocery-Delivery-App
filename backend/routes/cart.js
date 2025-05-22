@@ -30,5 +30,4 @@ router.put('/:id', (req, res) => {
   item.quantity = quantity;
   res.json({ message: "Cart item updated", data: item });
 });
-
 module.exports = router;

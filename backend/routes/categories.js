@@ -28,5 +28,4 @@ router.put('/:id', (req, res) => {
   category.name = name;
   res.json({ message: "Category updated", data: category });
 });
-
 module.exports = router;

@@ -36,5 +36,4 @@ router.put('/:id', (req, res) => {
   item.price = price || item.price;
   res.json({ message: "Item updated", data: item });
 });
-
 module.exports = router;
