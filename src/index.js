@@ -7,11 +7,11 @@ app.use(cors());
 app.use(express.json());
 
 // Importing all routes
-const itemsRoute = require('./routes/items');
-const categoriesRoute = require('./routes/categories');
-const cartRoute = require('./routes/cart');
-const ordersRoute = require('./routes/orders');
-const profileRoute = require('./routes/profile');
+const itemsRoute = require('../backend/routes/items');
+const categoriesRoute = require('../backend/routes/categories');
+const cartRoute = require('../backend/routes/cart');
+const ordersRoute = require('../backend/routes/orders');
+const profileRoute = require('../backend/routes/profile');
 
 // Using routes
 app.use('/items', itemsRoute);
