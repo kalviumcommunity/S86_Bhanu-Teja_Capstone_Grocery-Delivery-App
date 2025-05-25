@@ -1,40 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/User');
 
-let profiles = [];
-
-router.get('/', (req, res) => res.json(profiles));
-
-router.post('/create', (req, res) => {
-  const { name, email, phone, address } = req.body;
-  if (!name || !email || !phone || !address) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
-
-  const newProfile = {
-    id: profiles.length + 1,
-    name,
-    email,
-    phone,
-    address
-  };
-
-  profiles.push(newProfile);
-  res.status(201).json({ message: "Profile created", data: newProfile });
+router.get('/', async (req, res) => {
+  const users = await User.find();
+  res.json(users);
 });
 
-router.put('/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const { name, email, phone, address } = req.body;
-
-  const profile = profiles.find(p => p.id === id);
-  if (!profile) return res.status(404).json({ message: "Profile not found" });
-
-  profile.name = name || profile.name;
-  profile.email = email || profile.email;
-  profile.phone = phone || profile.phone;
-  profile.address = address || profile.address;
-
-  res.json({ message: "Profile updated", data: profile });
+router.post('/', async (req, res) => {
+  const user = new User(req.body);
+  await user.save();
+  res.status(201).json(user);
 });
+
+router.put('/update/:id', async (req, res) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(user);
+});
+
 module.exports = router;

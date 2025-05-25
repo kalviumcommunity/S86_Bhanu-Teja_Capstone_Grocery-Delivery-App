@@ -1,31 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const Category = require('../models/Category');
 
-let categories = [
-  { id: 1, name: "Fruits" },
-  { id: 2, name: "Vegetables" },
-  { id: 3, name: "Dairy" },
-];
-
-router.get('/', (req, res) => res.json(categories));
-
-router.post('/add', (req, res) => {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ message: "Category name is required" });
-
-  const newCategory = { id: categories.length + 1, name };
-  categories.push(newCategory);
-  res.status(201).json({ message: "Category added", data: newCategory });
+router.get('/', async (req, res) => {
+  const categories = await Category.find();
+  res.json(categories);
 });
 
-router.put('/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const { name } = req.body;
-
-  const category = categories.find(c => c.id === id);
-  if (!category) return res.status(404).json({ message: "Category not found" });
-
-  category.name = name;
-  res.json({ message: "Category updated", data: category });
+router.post('/', async (req, res) => {
+  const category = new Category(req.body);
+  await category.save();
+  res.status(201).json(category);
 });
+
+router.put('/update/:id', async (req, res) => {
+  const category = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(category);
+});
+
 module.exports = router;
