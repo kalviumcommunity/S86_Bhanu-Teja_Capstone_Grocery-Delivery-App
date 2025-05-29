@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
-const OrderSchema = new mongoose.Schema({
+const mongoose = require("mongoose");
+
+const orderSchema = new mongoose.Schema({
   userId: String,
-  items: [{
-    itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'Item' },
-    quantity: Number
-  }],
-  deliverySlot: String,
-  status: String
+  cartItems: Array,
+  totalAmount: Number,
+  paymentMethod: String,
+  status: { type: String, default: "Processing" },
 });
-module.exports = mongoose.model('Order', OrderSchema);
+
+module.exports = mongoose.model("Order", orderSchema);
