@@ -1,26 +1,26 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Order = require("../models/Order");
+const Order = require('../models/Order');
 
-router.get("/", async (req, res) => {
-  const orders = await Order.find();
+router.get('/', async (req, res) => {
+  const orders = await Order.find().populate('user items');
   res.json(orders);
 });
 
-router.post("/create", async (req, res) => {
+router.post('/', async (req, res) => {
   const order = new Order(req.body);
   await order.save();
-  res.status(201).json(order);
+  res.json(order);
 });
 
-router.put("/:id", async (req, res) => {
-  const updated = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);
+router.put('/:id', async (req, res) => {
+  const order = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(order);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
   await Order.findByIdAndDelete(req.params.id);
-  res.json({ message: "Deleted" });
+  res.json({ message: 'Order deleted' });
 });
 
 module.exports = router;
